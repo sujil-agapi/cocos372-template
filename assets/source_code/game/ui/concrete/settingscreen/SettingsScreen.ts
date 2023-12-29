@@ -1,14 +1,14 @@
 import { _decorator, Slider, Button, Sprite } from "cc";
-import { BaseScreen } from "../../base/BaseScreen";
-import { GameState } from "../../../gamestate/GameStates";
-import { InterfaceManager } from "../../../interfaces/InterfaceManager";
-import { IGameStateManager } from "../../../gamestate/IGameStateManager";
-import { GameStateManager } from "../../../gamestate/GameStateManager";
-import { IPlayerDataManager } from "../../../playerdata/IPlayerDataManager";
-import { PlayerDataManager } from "../../../playerdata/PlayerDataManager";
-import { AudioManager } from "../../../audio/AudioManager";
-import { IAudioManager } from "../../../audio/IAudioManager";
-import { AudioConst } from "../../../audio/AudioConst";
+import { AudioConst } from "../../../../core/audio/AudioConst";
+import { AudioManager } from "../../../../core/audio/AudioManager";
+import { IAudioManager } from "../../../../core/audio/IAudioManager";
+import { GameStateManager } from "../../../../core/gamestate/GameStateManager";
+import { GameState } from "../../../../core/gamestate/GameStates";
+import { IGameStateManager } from "../../../../core/gamestate/IGameStateManager";
+import { InterfaceManager } from "../../../../core/interfaces/InterfaceManager";
+import { IPlayerDataManager } from "../../../../core/playerdata/IPlayerDataManager";
+import { PlayerDataManager } from "../../../../core/playerdata/PlayerDataManager";
+import { BaseScreen } from "../../../../core/ui/base/BaseScreen";
 
 const { ccclass, property } = _decorator;
 
