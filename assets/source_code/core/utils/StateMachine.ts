@@ -71,7 +71,13 @@ export class StateMachine extends Component {
 
     private execute(f: Function | null) {
         if (f !== null) {
-            f();
+            if (typeof f === 'function') {
+                f();
+            } else {
+                if (this.debug) {
+                    console.error(`Attempted to execute a non-function:`, f);
+                }
+            }
         }
     }
 }

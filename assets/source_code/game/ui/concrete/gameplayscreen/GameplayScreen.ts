@@ -3,8 +3,15 @@ import { InterfaceManager } from "../../../../core/interfaces/InterfaceManager";
 import { BaseScreen } from "../../../../core/ui/base/BaseScreen";
 import { IGameplayManager } from "../../../gameplay/core/IGameplayManager";
 import { GameplayManager } from "../../../gameplay/core/GameplayManager";
+import { StateMachine } from "../../../../core/utils/StateMachine";
 
 const { ccclass, property } = _decorator;
+
+enum MachineState {
+  SomeState1 = 1,
+  SomeState2 = 3,
+  Size = 5
+}
 
 @ccclass("GameplayScreen")
 export class GameplayScreen extends BaseScreen {
@@ -17,7 +24,16 @@ export class GameplayScreen extends BaseScreen {
 
   private gameplayManager: IGameplayManager = null;
 
-  protected onLoad(): void {}
+
+  private stateMachine : StateMachine;
+   
+  protected onLoad(): void {
+    this.runStateMachine();
+  }
+
+  protected update(dt: number): void {
+      this.stateMachine?.update(dt);
+  }
 
   protected onShow(): void {
     this.gameplayManager =
@@ -63,5 +79,24 @@ export class GameplayScreen extends BaseScreen {
   }
   private setGameStatusAsFail () : void {
     this.gameplayManager.setGameStatus(false);
+  }
+
+  private runStateMachine () : void {
+
+    this.stateMachine = new StateMachine (MachineState.Size);
+    this.stateMachine.registerState(MachineState.SomeState1, this.OnSomeStateEnter.bind(this), this.OnSomeStateUpdate.bind(this), this.OnSomeStateExit.bind(this));
+    this.stateMachine.setState(MachineState.SomeState1);
+  }
+
+  private OnSomeStateEnter () : void {
+
+    console.log ("OnSomeStateEnter");
+  }
+  private OnSomeStateUpdate () : void {
+    console.log ("OnSomeStateUpdate");
+  }
+
+  private OnSomeStateExit () : void {
+    console.log ("OnSomeStateExit");
   }
 }

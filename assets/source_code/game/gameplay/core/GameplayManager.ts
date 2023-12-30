@@ -10,6 +10,7 @@ import { IPlayerDataManager } from "../../../core/playerdata/IPlayerDataManager"
 import { PlayerDataManager } from "../../../core/playerdata/PlayerDataManager";
 import { GenericSingleton } from "../../../core/utils/GenericSingleton";
 import { IGameplayManager } from "./IGameplayManager";
+import { StateMachine } from "../../../core/utils/StateMachine";
 const { ccclass, property } = _decorator;
 
 export const gameEvents = new EventTarget();
@@ -26,7 +27,6 @@ export class GameplayManager extends GenericSingleton<GameplayManager> implement
   private levelManager: ILevelManager;
   private playerDataManager: IPlayerDataManager;
 
-
   initialise(): void {
     InterfaceManager.Instance.registerInterface(this); // Adjust based on your project
     GameEvents.onGameStateChange.on(
@@ -34,6 +34,8 @@ export class GameplayManager extends GenericSingleton<GameplayManager> implement
         this.gameEventsOnOnGameStateChange(prevState, newState, isOverlayState);
       }
     );
+
+
   }
   resolveDependencies(): void {
     this.gameStateManager =
