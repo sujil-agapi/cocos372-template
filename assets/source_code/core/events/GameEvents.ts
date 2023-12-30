@@ -21,10 +21,4 @@ export class GameEvents {
     public static dispatchScoreChange(score: number) {
         this.onScoreChange.emit(score);
     }
-    public static dispatchTurnCountChange(turnCount: number) {
-        this.onTurnsCountChange.emit(turnCount);
-    }
-    public static dispatchComboReceived(combValue: number) {
-        this.onComboReceived.emit(combValue);
-    }
 }

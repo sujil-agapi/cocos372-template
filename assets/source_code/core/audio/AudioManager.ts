@@ -11,6 +11,8 @@ import { AudioLibrary } from "./AudioLibrary";
 import { IAudioManager } from "./IAudioManager";
 const { ccclass, property } = _decorator;
 
+//TODO - Add lazy loading
+
 @ccclass("AudioManager")
 export class AudioManager extends GenericSingleton<AudioManager> implements IAudioManager, IBootStrapListener {
   isTypeOfBootStrapListener: boolean = true;

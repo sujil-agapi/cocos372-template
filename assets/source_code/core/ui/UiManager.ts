@@ -5,13 +5,13 @@ import { InterfaceManager } from "../interfaces/InterfaceManager";
 import { GenericSingleton } from "../utils/GenericSingleton";
 import { IUiManager } from "./IUiManager";
 import { BaseScreen } from "./base/BaseScreen";
-import { GameplayScreen } from "./concrete/gameplayscreen/GameplayScreen";
-import { HomeScreen } from "./concrete/homescreen/HomeScreen";
-import { GameResetScreen } from "./concrete/resetscreen/GameResetScreen";
-import { ResultScreen } from "./concrete/resultscreen/ResultsScreen";
-import { SettingsScreen } from "./concrete/settingscreen/SettingsScreen";
-import { SplashScreen } from "./concrete/splashScreen/SplashScreen";
 import { GameEvents } from "../events/GameEvents";
+import { GameplayScreen } from "../../game/ui/concrete/gameplayscreen/GameplayScreen";
+import { HomeScreen } from "../../game/ui/concrete/homescreen/HomeScreen";
+import { GameResetScreen } from "../../game/ui/concrete/resetscreen/GameResetScreen";
+import { ResultScreen } from "../../game/ui/concrete/resultscreen/ResultsScreen";
+import { SettingsScreen } from "../../game/ui/concrete/settingscreen/SettingsScreen";
+import { SplashScreen } from "../../game/ui/concrete/splashScreen/SplashScreen";
 
 
 const { ccclass, property } = _decorator;

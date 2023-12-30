@@ -6,6 +6,5 @@ export class AudioConst {
     // SFX
     public static readonly ButtonClick = "button_click";
     public static readonly LevelSuccess = "level_success";
-    public static readonly ItemPlace = "item_place";
     public static readonly LevelFailure = "level_failure";
 }

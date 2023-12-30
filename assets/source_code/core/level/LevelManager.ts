@@ -7,16 +7,11 @@ const { ccclass, property } = _decorator;
 
 @ccclass("LevelManager")
 export class LevelManager extends GenericSingleton<LevelManager> implements IBootStrapListener, ILevelManager {
-  getLevelBasedOnIndex(index: number): LevelData {
-    if (index >= 0 && index < this.levelsContainer.levels.length) {
-      return this.levelsContainer.levels[index];
-    }
-    return null;
-  }
 
   isTypeOfBootStrapListener: boolean = true;
-    
-  private levelsContainer: LevelsContainer = new LevelsContainer();
+
+  private levelsContainer: LevelsContainer = null;
+  private readonly LEVEL_JSON_PATH : string = 'data/level/levels';
 
   getLevel(index: number): LevelData {
     if (index >= 0 && index < this.levelsContainer.levels.length) {
@@ -26,21 +21,36 @@ export class LevelManager extends GenericSingleton<LevelManager> implements IBoo
   }
 
   initialise(): void {
+    this.loadLevelsFromJson(this.LEVEL_JSON_PATH);
     InterfaceManager.Instance.registerInterface(this);
-    this.generateLevels();
-    console.log ("Generated levels");
   }
 
   resolveDependencies(): void {}
-
   terminate(): void {}
 
-  generateLevels(): void {
-    const numberOfLevels = 100;
-    for (let i = 0; i < numberOfLevels; i++) {
-      this.levelsContainer.levels.push(new LevelData(i));
-    }
+  loadLevelsFromJson(levelJson: string): void {
+    resources.load(levelJson, (err, asset) => {
+      if (err) {
+        console.error("Failed to load levels:", err);
+        return;
+      }
+      if (asset) {
+        const data = asset.json as unknown as { levels: JsonLevelData[] };
+        this.levelsContainer = new LevelsContainer();
+        this.levelsContainer.levels = data.levels.map(
+          (levelData: JsonLevelData) => {
+            const level = new LevelData();
+            level.sample_item = levelData.sample_item;
+            return level;
+          }
+        );
+      }
+    });
   }
+}
+
+interface JsonLevelData {
+  sample_item: number;
 }
 
 export class LevelsContainer {
@@ -49,21 +59,5 @@ export class LevelsContainer {
 }
 export class LevelData {
   @property
-  public turn_duration: number;
-
-  @property
-  public col_row_count: number = 0;
-
-  @property
-  public difficulty: number = 0;
-
-  constructor(levelNumber: number) {
-    this.turn_duration = Math.max(15 - Math.floor(levelNumber / 5), 8);
-    this.difficulty = Math.floor(Math.random() * 11); // Random number between 0 to 10
-    if (levelNumber < 50) {
-      this.col_row_count = 7 + Math.floor(Math.random() * 2); // Random number between 7 and 8
-    } else {
-      this.col_row_count = Math.floor(Math.random() * 3) + 5; // Random number between 5 to 7
-    }
-  }
+  sample_item: number;
 }

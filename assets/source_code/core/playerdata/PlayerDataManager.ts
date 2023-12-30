@@ -36,6 +36,8 @@ export class PlayerDataManager extends GenericSingleton<PlayerDataManager> imple
   
 
   updatePlayerLevelData(levelIndex: number, levelResultData: LevelResultData): void {
+
+    return;
     
     let progress: PlayerProgress = this.loadPlayerProgress();
     let levelProgressData = levelResultData.createLevelProgressData();

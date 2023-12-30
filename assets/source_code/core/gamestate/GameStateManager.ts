@@ -8,10 +8,9 @@ const { ccclass, property } = _decorator;
 
 @ccclass('GameStateManager')
 export class GameStateManager extends Component implements IBootStrapListener, IGameStateManager {
-    forceChangeGameStateNew(newState: GameState): void {
-      this.setGameState(newState);
-    }
+    
     isTypeOfBootStrapListener: boolean = true;
+    currentGameState: GameState;
 
     initialise(): void {
       InterfaceManager.Instance.registerInterface(this);
@@ -22,10 +21,9 @@ export class GameStateManager extends Component implements IBootStrapListener, I
     terminate(): void {
      //throw new Error("Method not implemented.");
     }
-  
-    currentGameState: GameState;
+ 
     forceChangeGameState(newState: GameState): void {
-      this.setGameState(newState);
+      this.setGameState(newState, newState === GameState.Settings);
     }
   
     private setGameStateToSplash(): void {
@@ -42,10 +40,7 @@ export class GameStateManager extends Component implements IBootStrapListener, I
       this.setGameState(GameState.Home);
     }
   
-    private setGameState(
-      newGameState: GameState,
-      isOverlay: boolean = false
-    ): void {
+    private setGameState(newGameState: GameState, isOverlay: boolean = false): void {
       if (this.currentGameState !== newGameState) {
         GameEvents.dispatchGameStateChanged(
           this.currentGameState,
