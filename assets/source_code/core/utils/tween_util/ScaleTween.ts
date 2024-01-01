@@ -38,8 +38,8 @@ export class ScaleTween extends Component {
     play(callback?: Function): void {
         let easingFunction = getEasingFunction(this.easingType);
         let scaleSequence = tween(this.node).sequence(
-            tween().to(1, { scale: this.startScaleValue }, { easing: easingFunction }),
-            tween().to(1, { scale: this.endScaleValue }, { easing: easingFunction })
+            tween().to(this.duration, { scale: this.startScaleValue }, { easing: easingFunction }),
+            tween().to(this.duration, { scale: this.endScaleValue }, { easing: easingFunction })
         );
     
         if (this.loop) {

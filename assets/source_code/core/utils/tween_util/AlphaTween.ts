@@ -1,21 +1,31 @@
-import { _decorator, Component, Color, Tween, tween, Sprite, Enum } from "cc";
+import { _decorator, Component, Tween, tween, UIOpacity, CCInteger, Enum } from "cc";
 import { EasingType, EasingTypeOptions, getEasingFunction } from "./EasingType";
 
 const { ccclass, property } = _decorator;
 
-@ccclass("ColorTween")
-export class ColorTween extends Component {
+@ccclass("AlphaTween")
+export class AlphaTween extends Component {
   @property({
     type: EasingTypeOptions,
     tooltip: "The easing function type for the animation.",
   })
   public easingType: EasingType = EasingType.Linear;
 
-  @property
-  public startColor: Color = new Color(0, 0, 0);
+  @property({
+    type: CCInteger,
+    tooltip: "Starting alpha value.",
+    slide: true,
+    range: [0, 255, 1],
+  })
+  public startAlpha: number = 255;
 
-  @property
-  public endColor: Color = new Color(0, 0, 0);
+  @property({
+    type: CCInteger,
+    tooltip: "Ending alpha value.",
+    slide: true,
+    range: [0, 255, 1],
+  })
+  public endAlpha: number = 255;
 
   @property
   public duration: number = 1;
@@ -41,27 +51,19 @@ export class ColorTween extends Component {
     let easingFunction = getEasingFunction(this.easingType);
     this.currentTween?.stop();
 
-    const sprite = this.node.getComponent(Sprite);
-    if (sprite) {
-      sprite.color = new Color(this.startColor);
-      let colorTween = tween(sprite)
+    const uiOpacity = this.node.getComponent(UIOpacity);
+    if (uiOpacity) {
+      uiOpacity.opacity = this.startAlpha;
+      let opacityTween = tween(uiOpacity)
         .delay(this.delay)
-        .to(
-          this.duration,
-          { color: new Color(this.startColor) },
-          { easing: easingFunction }
-        )
-        .to(
-          this.duration,
-          { color: new Color(this.endColor) },
-          { easing: easingFunction }
-        );
+        .to(this.duration, { opacity: this.startAlpha }, { easing: easingFunction })
+        .to(this.duration, { opacity: this.endAlpha }, { easing: easingFunction });
 
       if (this.loop) {
-        this.currentTween = new Tween<Sprite>(sprite).then(colorTween).repeatForever();
+        this.currentTween = new Tween<any>(uiOpacity).then(opacityTween).repeatForever();
       } else if (callback) {
-        this.currentTween = new Tween<Sprite>(sprite)
-          .then(colorTween)
+        this.currentTween = new Tween<any>(uiOpacity)
+          .then(opacityTween)
           .call(() => {
             if (callback && typeof callback === "function") {
               callback();
@@ -71,7 +73,7 @@ export class ColorTween extends Component {
 
       this.currentTween.start();
     } else {
-      console.error("Sprite component not found on the node");
+      console.error("UIOpacity component not found on the node");
     }
   }
 
