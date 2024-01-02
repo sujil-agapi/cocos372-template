@@ -3,7 +3,6 @@ temp/
 build/
 library/
 local/
-settings/
 
 # Dependency directories
 node_modules/

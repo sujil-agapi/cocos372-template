@@ -1407,7 +1407,7 @@
         "__id__": 96
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 103
@@ -3581,7 +3581,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "ScaleTween-003",
+    "_name": "MoveTween",
     "_objFlags": 0,
     "_parent": {
       "__id__": 36
@@ -3691,7 +3691,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 105.62,
+      "width": 125.63,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -3720,7 +3720,7 @@
       "b": 255,
       "a": 255
     },
-    "_string": "scale tween",
+    "_string": "rotation tween",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 20,
@@ -3750,8 +3750,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 200,
-      "height": 200
+      "width": 150,
+      "height": 150
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -3774,9 +3774,9 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 0,
-      "b": 235,
+      "r": 52,
+      "g": 185,
+      "b": 0,
       "a": 255
     },
     "_spriteFrame": {
@@ -3807,7 +3807,7 @@
     },
     "_enabled": true,
     "__prefab": null,
-    "easingType": 0,
+    "easingType": 7,
     "startRotationValue": {
       "__type__": "cc.Vec3",
       "x": 0,
@@ -3817,14 +3817,14 @@
     "endRotationValue": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 90,
-      "z": 0
+      "y": 0,
+      "z": 360
     },
     "duration": 1,
     "loop": true,
     "delay": 0.1,
     "playOnStart": true,
-    "_id": "b3puccpiJLiIZ0K8tw99At"
+    "_id": "34BR9xwyVI8ZyLEOHHCsRy"
   },
   {
     "__type__": "cc.UITransform",
