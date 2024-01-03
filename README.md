@@ -7,7 +7,7 @@
 
 A [Cocos](https://www.cocos.com/en/) framework designed to streamline game development with a set of reusable codes and frameworks, making your game creation process smoother and more efficient.
 
-*Download the package file [G-Drive](https://drive.google.com/drive/folders/1FnzBUuAIP1_3XoN-Opj0bpLD9tTMO38z?usp=drive_link)*
+*Download the package file [G-Drive](https://drive.google.com/drive/folders/1SJx5H6x_51Us7bXmYDSaF2P8LrTwM9uk?usp=sharing)*
 
 ## Features
 
